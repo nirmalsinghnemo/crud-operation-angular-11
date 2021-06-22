@@ -1,0 +1,54 @@
+<div class="container">
+  <form #myForm="ngForm">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Full Name</label>
+      <input type="text" class="form-control" name="name" aria-describedby="emailHelp" [(ngModel)]="userObj.name">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+      <input type="number" class="form-control" name="mobile" aria-describedby="emailHelp" [(ngModel)]="userObj.mobile">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" aria-describedby="emailHelp" [(ngModel)]="userObj.email">
+
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="userObj.password">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="addUser(myForm.value)"
+    *ngIf="!isEdit">Submit</button>
+    <button type="button" class="btn btn-info" *ngIf="isEdit" (click)="updateUser()">update</button>
+  </form>
+  <br>
+  <table class="table">
+    <thead>
+      <tr>
+
+        <th scope="col">Full Name</th>
+        <th scope="col">Mobile Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of userData">
+
+        <td>{{row.name}}</td>
+        <td>{{row.mobile}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.password}}</td>
+        <td><button (click)="editUser(row)" class="btn btn-warning">Edit</button></td>
+        <td><button (click)="deleteUser(row)" class="btn btn-danger">Delete</button></td>
+      </tr>
+          </tbody>
+  </table>
+</div>
